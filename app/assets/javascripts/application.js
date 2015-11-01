@@ -13,3 +13,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$(document).ready(function() {
+    $("#add_button").click(function(){
+        event.preventDefault();
+        $("#myDiv").show();
+        $("#add_button").css('visibility','hidden');
+    });
+    $("#cansel_link").click(function(){
+        event.preventDefault();
+        $("#myDiv").hide();
+        $("#add_button").css('visibility','visible');
+    });
+    $("#submit_link").click(function(){
+        event.preventDefault();
+        $("#submit_button").click();
+        //$("#new_task_form").submit(); //doesn't work
+    });
+});

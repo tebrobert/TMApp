@@ -1,0 +1,31 @@
+<h1>Задачи</h1>
+ 
+<% @projects.order(:id).each do |project| %>
+  <p>
+  <h4><%= project.title %></h4>
+  
+  <ul>
+  <% project.todos.order(:id).each do |todo| %>
+    <li><%= todo.text %></li>
+  <% end %>
+  </ul>
+  
+  </p>
+<% end %>
+
+<%= button_tag "+", id:"add_button" %>
+
+<div id="myDiv" hidden="true">
+  <%= form_for :todo, id: "new_task_form" do |f| %>
+    <h4>НОВАЯ ЗАДАЧА</h4>
+    
+    <p> <%= f.text_field :text, placeholder: "Название задачи..." %> </p>
+    
+    <p><%= f.collection_select(:project_id, Project.all.order(:id), :id, :title) %></p>
+    
+    <%= f.submit id: "submit_button", :hidden=>"true" %>
+    <%= link_to "ОТМЕНА", nil, id: "cansel_link" %>
+    <%= link_to "ОК", nil, id: "submit_link" %>
+    
+  <% end %>
+</div>
